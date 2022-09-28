@@ -1,5 +1,12 @@
-.storybook-button {
-  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #d7286c;
+  --secondary: #6CD728;
+  --tetriary: #286CD7;
+}
+.weatherapp-button {
+  font-family: 'Spline Sans', sans-serif;
   font-weight: 700;
   border: 0;
   border-radius: 3em;
@@ -7,24 +14,24 @@
   display: inline-block;
   line-height: 1;
 }
-.storybook-button--primary {
-  color: white;
-  background-color: #1ea7fd;
+.weatherapp-button--main {
+  color: white !important;
+  background-color: var(--primary) !important;
 }
-.storybook-button--secondary {
-  color: #333;
-  background-color: transparent;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+.weatherapp-button--outline {
+  color: var(--primary) !important;
+  background-color: white !important;
+  border: 1px solid var(--primary) !important;
 }
-.storybook-button--small {
+.weatherapp-button--small {
   font-size: 12px;
   padding: 10px 16px;
 }
-.storybook-button--medium {
+.weatherapp-button--medium {
   font-size: 14px;
   padding: 11px 20px;
 }
-.storybook-button--large {
+.weatherapp-button--large {
   font-size: 16px;
   padding: 12px 24px;
 }

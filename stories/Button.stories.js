@@ -2,10 +2,13 @@ import { createButton } from './Button';
 
 // More on default export: https://storybook.js.org/docs/html/writing-stories/introduction#default-export
 export default {
-  title: 'Example/Button',
+  title: 'WeatherApp/Button',
   // More on argTypes: https://storybook.js.org/docs/html/api/argtypes
   argTypes: {
-    backgroundColor: { control: 'color' },
+    variant: {
+      options: ['primary', 'secondary', 'tetriary'],
+      control: { type: 'radio' },
+    },
     label: { control: 'text' },
     onClick: { action: 'onClick' },
     primary: { control: 'boolean' },
@@ -13,6 +16,7 @@ export default {
       control: { type: 'select' },
       options: ['small', 'medium', 'large'],
     },
+    isOutline: { control: 'boolean' },
   },
 };
 
@@ -23,26 +27,18 @@ const Template = ({ label, ...args }) => {
   return createButton({ label, ...args });
 };
 
-export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/html/writing-stories/args
-Primary.args = {
+
+export const Main = Template.bind({});
+export const Outline = Template.bind({});
+
+
+Main.args = {
   primary: true,
+  isOutline: false,
   label: 'Button',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Button',
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  label: 'Button',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
+Outline.args = {
+  isOutline: true,
   label: 'Button',
 };
