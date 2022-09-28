@@ -5,7 +5,7 @@ var APIkey = "712e884a43143ab7711a408902440f8f" //insert your API key from open 
 var location = "lethbridge,ca"; // option to change location 
 
 window.onload = function () {  
-    weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&APPID=" + APIkey;
+    weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&APPID=" + APIkey;
     weather();
 }
 
