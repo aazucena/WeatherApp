@@ -11,7 +11,8 @@
     "dev": "npx cordova run --emulator",
     "refresh": "npx cordova emulate",
     "build": "npx cordova build android",
-    "config": "npx cordova platform add android"
+    "config": "npx cordova platform add android",
+    "start": "concurrently --kill-others \"npm run dev\" \" npm run storybook\""
   },
   "keywords": [
     "ecosystem:cordova"
