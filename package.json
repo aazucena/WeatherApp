@@ -8,8 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "dev": "npx cordova run --emulate",
-    "build": "npx cordova build android"
+    "dev": "npx cordova run --emulator",
+    "refresh": "npx cordova emulate",
+    "build": "npx cordova build android",
+    "config": "npx cordova platform add android"
   },
   "keywords": [
     "ecosystem:cordova"
