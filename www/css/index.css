@@ -35,6 +35,8 @@ body {
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#ec7d9a;
     background-image: linear-gradient(to top, #ec7d9a 0%, var(--primary) 37.5%);
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: 'Spline Sans', sans-serif;
     font-size:12px;
     height:100vh;
@@ -266,14 +268,12 @@ body {
 /* containerw */
 
 .container { 
-    width: 100% !important;
     padding-right: calc(1.5rem * 5) !important;
     padding-left: calc(1.5rem * 5) !important;
     margin-right: auto !important;
     margin-left: auto !important;
 }
 .container-fluid { 
-    width: 100% !important;
     padding-right: calc(1.5rem * 0.5) !important;
     padding-left: calc(1.5rem * 0.5) !important;
     margin-right: auto !important;
@@ -534,7 +534,11 @@ body {
 .vh-100 { height: 100vw !important; }
 .min-vh-100 { min-height: 100vw !important; }
 
-/* displays */
+/* overflow */
+.overflow-auto { overflow: auto !important; }
+.overflow-hidden { overflow: hidden !important; }
+.overflow-visible { overflow: visible !important; }
+.overflow-scroll { overflow: scroll !important; }
 /* buttons */
 /* navbars */
 
