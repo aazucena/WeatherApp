@@ -1,42 +1,42 @@
-var xmlhttp;
-var weatherURL;
+window.onload = async() => {  
+    var { meta, data: forecast } = await retrieveForecast()
+    if (meta.status === 200 && meta.statusText === 'OK' && meta.ok === true) {
+        var { main, weather , wind } = forecast
 
-var APIkey = "712e884a43143ab7711a408902440f8f" //insert your API key from open weather map https://home.openweathermap.org/users/sign_up
-var location = "lethbridge,ca"; // option to change location 
-
-window.onload = function () {  
-    weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&APPID=" + APIkey;
-    weather();
-}
-
-function weather() {
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', weatherURL, true); //this changes the state of xmlhttp
-    xmlhttp.send();
-    xmlhttp.onreadystatechange = getWeather;
-}
-
-function getWeather() { // when readystate changes
-        
-    //check to see if the client -4 and server -200 is ready
-    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-
-        var json = JSON.parse(xmlhttp.responseText);
-
-        function Forcast(Temp, Descrip, Icon, Wind, Max, Min, Humid) {          
-            document.getElementById("temp").innerHTML = Math.round(Temp);
-            document.getElementById("description").innerHTML = Descrip;
-            document.getElementById("mintemp").innerHTML = Min;
-            document.getElementById("maxtemp").innerHTML = Max;
-            document.getElementById("wind").innerHTML = Wind;
-            document.getElementById("humidity").innerHTML = Humid;
+        function setForecast ({ temp, description, icon, wind, maxtemp, mintemp, humidity }) {          
+            document.getElementById("temp").innerHTML = Math.round(temp);
+            document.getElementById("description").innerHTML = description;
+            document.getElementById("mintemp").innerHTML = mintemp;
+            document.getElementById("maxtemp").innerHTML = maxtemp;
+            document.getElementById("wind").innerHTML = wind;
+            document.getElementById("humidity").innerHTML = humidity;
         }
+        const weather_info = {
+            temp: main.temp,
+            description: weather?.at(0).description, 
+            icon: weather?.at(0).icon, 
+            wind: wind.speed, 
+            maxtemp: main.temp_max, 
+            mintemp: main.temp_min, 
+            humidity: main.humidity 
+        }
+        setForecast(weather_info)
 
-        var current = new Forcast(json.main.temp, json.weather[0].description, json.weather[0].icon, json.wind.speed, json.main.temp_max, json.main.temp_min, json.main.humidity );
+        console.log("all info received from server")
+    }
+    console.log("🚀 ~ file: weatherapp.js ~ line 12 ~ window.onload=async ~ forecast", forecast)
+}
 
-        console.log("all info received from server");
-
-    } else {
-        console.log("no dice");
+const retrieveForecast = async() => {
+    var APIkey = "712e884a43143ab7711a408902440f8f" //insert your API key from open weather map https://home.openweathermap.org/users/sign_up
+    var geoLocation = "lethbridge,ca"
+    var url = `https://api.openweathermap.org/data/2.5/weather?q${'='}${geoLocation}&units=metric&APPID=${APIkey}`
+    var response = await fetch(url, {
+        method: 'GET',
+    })
+    var data = await response.json()
+    return {
+        meta: response,
+        data,
     }
 }

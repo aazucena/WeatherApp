@@ -2,6 +2,7 @@
   "name": "io.cordova.hellocordova",
   "displayName": "HelloCordova",
   "version": "1.0.0",
+  "type": "module",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "main": "index.js",
   "scripts": {

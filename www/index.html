@@ -28,7 +28,15 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; media-src *; img-src 'self' data: content:; connect-src 'self' https://api.openweathermap.org; font-src 'self' fonts.gstatic.com;">
+        <meta http-equiv="Content-Security-Policy" content="
+            default-src 'self' data: ssl.gstatic.com 'unsafe-eval'; 
+            style-src 'self' 'unsafe-inline' fonts.googleapis.com ka-f.fontawesome.com;
+            media-src *; 
+            img-src 'self' data: content:; 
+            script-src 'self' 'unsafe-eval' 'unsafe-inline' ka-f.fontawesome.com ;
+            script-src-elem 'self' 'unsafe-inline' unpkg.com ka-f.fontawesome.com ;
+            connect-src 'self' api.openweathermap.org;
+            font-src 'self' fonts.gstatic.com ka-f.fontawesome.com fonts.googleapis.com">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -36,16 +44,21 @@
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/weather-icons.min.css">
         <link rel="stylesheet" href="css/weather-icons-wind.min.css">
+        <link rel="stylesheet" href="https://ka-f.fontawesome.com/releases/v6.2.0/css/free.min.css?token=c5602657cf">
         <title>Weather App</title>
     </head>
     <body>
-        <div id="temp">1&deg;C</div>
-        <div><p id="description"></p></div>
-        <div id="temp">1&deg;C</div>
-        <div id="max">1&deg;C</div>
-        <div id="min">1&deg;C</div>
-        <!--<script src="js/index.js"></script>-->
-        <script src="cordova.js"></script>
-        <script src="weatherapp.js"></script>
+        <div class="container"> 
+            <div id="temp">1&deg;C</div>
+            <div><p id="description"></p></div>
+            <div id="wind">1&deg;C</div>
+            <div id="maxtemp">1&deg;C</div>
+            <div id="mintemp">1&deg;C</div>
+            <div id="humidity">1RH%</div>
+            <i class="fa fa-pencil"></i>
+        </div>
     </body>
+    <!--<script src="js/index.js"></script>-->
+    <script type='module' src="cordova.js" type="application/javascript"></script>
+    <script type='module' src="js/weatherapp.js" type="application/javascript"></script>
 </html>
