@@ -30,9 +30,8 @@
             default-src 'self' data: ssl.gstatic.com 'unsafe-eval'; 
             style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com ka-f.fontawesome.com;
             media-src *; 
-            img-src 'self' data: content: openweathermap.org; 
-            script-src 'self' 'unsafe-eval' 'unsafe-inline' requirejs.org ka-f.fontawesome.com cdnjs.cloudflare.com;
-            script-src-elem 'self' 'unsafe-inline' requirejs.org unpkg.com ka-f.fontawesome.com cdnjs.cloudflare.com;
+            img-src 'self' openweathermap.org; 
+            script-src 'self' 'unsafe-eval' 'unsafe-inline' code.jquery.com unpkg.com requirejs.org ka-f.fontawesome.com cdnjs.cloudflare.com;
             connect-src 'self' api.openweathermap.org weatherdbi.herokuapp.com;
             font-src 'self' fonts.gstatic.com ka-f.fontawesome.com fonts.googleapis.com cdnjs.cloudflare.com">
         <meta name="format-detection" content="telephone=no">
@@ -47,7 +46,7 @@
         <title>Weather App</title>
     </head>
     <body id="body">
-        <div class="container p-5">
+        <div class="container p-5 text-white">
             <div class="vstack gap-6 fs-2">
                 <div id="hero" class="vstack gap-2">
                     <div class="hstack justify-content-between gap-4 align-items-center">
@@ -89,6 +88,9 @@
         </div>
     </body>
     <!--<script src="js/index.js"></script>-->
+    <script src="https://unpkg.com/cron@2.1.0/lib/job.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/big.js/6.2.1/big.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone.min.js"></script>
     <script type='module' src="cordova.js" type="application/javascript"></script>
