@@ -20,21 +20,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
+    --primary-shade-5: #261217;
+    --secondary-shade-5: #192510;
+    --tetriary-shade-5: #131725;
+    --primary-shade-4: #461926;
+    --secondary-shade-4: #294418;
+    --tetriary-shade-4: #1c2644;
+    --primary-shade-3: #671f36;
+    --secondary-shade-3: #3a661e;
+    --tetriary-shade-3: #223666;
+    --primary-shade-2: #8b2448;
+    --secondary-shade-2: #4a8a22;
+    --tetriary-shade-2: #27478a;
+    --primary-shade-1: #b02759;
+    --secondary-shade-1: #5bb026;
+    --tetriary-shade-1: #2959b0;
     --primary: #d7286c;
     --secondary: #6CD728;
     --tetriary: #286CD7;
+    --primary-tint-1: #e25883;
+    --secondary-tint-1: #8bde55;
+    --tetriary-tint-1: #6082de;
+    --primary-tint-2: #ec7d9a;
+    --secondary-tint-2: #a5e579;
+    --tetriary-tint-2: #859ae5;
+    --primary-tint-3: #f49eb2;
+    --secondary-tint-3: #beec9b;
+    --tetriary-tint-3: #a6b2ec;
+    --primary-tint-4: #fabfcb;
+    --secondary-tint-4: #d4f3bc;
+    --tetriary-tint-4: #c5cbf3;
+    --primary-tint-5: #fddfe5;
+    --secondary-tint-5: #eaf9dd;
+    --tetriary-tint-5: #e2e5f9;
 }
 
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    transition: all 0.5s ease-in;
 }
 
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#ec7d9a;
-    background-image: linear-gradient(to top, #ec7d9a 0%, var(--primary) 37.5%);
+    background-color:var(--primary-tint-1);
+    background-image: linear-gradient(to top, var(--primary-tint-1) 0%, var(--primary) 37.5%);
     background-repeat: no-repeat;
     background-size: cover;
     font-family: 'Spline Sans', sans-serif;
@@ -146,40 +177,40 @@ body {
 .hstack {
     display: flex !important;
     flex: 1 1 auto !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
 }
 .gap-0 {
     gap: 0 !important;
 }
 .gap-1 {
-    gap: 0.25 !important;
+    gap: 0.25rem !important;
 }
 .gap-2 {
-    gap: 0.5 !important;
+    gap: 0.5rem !important;
 }
 .gap-3 {
-    gap: 0.75 !important;
+    gap: 0.75rem !important;
 }
 .gap-4 {
-    gap: 1 !important;
+    gap: 1rem !important;
 }
 .gap-5 {
-    gap: 1.25 !important;
+    gap: 1.25rem !important;
 }
 .gap-6 {
-    gap: 1.5 !important;
+    gap: 1.5rem !important;
 }
 .gap-7 {
-    gap: 1.75 !important;
+    gap: 1.75rem !important;
 }
 .gap-8 {
-    gap: 2 !important;
+    gap: 2rem !important;
 }
 .gap-9 {
-    gap: 2.5 !important;
+    gap: 2.5rem !important;
 }
 .gap-10 {
-    gap: 3 !important;
+    gap: 3rem !important;
 }
 
 /* z-index */
@@ -222,30 +253,43 @@ body {
 .text-center {
     text-align: center !important;
 }
+.text-start {
+    text-align: left !important;
+}
+.text-end {
+    text-align: right !important;
+}
+
 
 .fs-1 {
-    font-size: 1.225rem !important;
+    font-size: 0.5rem !important;
 }
 .fs-2 {
-    font-size: 1.25rem !important;
+    font-size: 1rem !important;
 }
 .fs-3 {
-    font-size: calc(1.275rem * 0.3vw) !important;
+    font-size: 1.25rem !important;
 }
 .fs-4 {
-    font-size: calc(1.3rem * 0.6vw) !important;
+    font-size: 1.5rem !important;
 }
 .fs-5 {
-    font-size: calc(1.325rem * 0.9vw) !important;
+    font-size: 1.75rem !important;
 }
 .fs-6 {
-    font-size: calc(1.350rem * 1.2vw) !important;
+    font-size: 2rem !important;
 }
 .fs-7 {
-    font-size: calc(1.375rem * 1.5vw) !important;
+    font-size: 2.25rem !important;
 }
 .fs-8 {
-    font-size: calc(1.4rem * 1.8vw) !important;
+    font-size: 2.5rem !important;
+}
+.fs-9 {
+    font-size: 2.75rem !important;
+}
+.fs-10 {
+    font-size: 3rem !important;
 }
 
 .fw-light {
@@ -268,14 +312,14 @@ body {
 /* containerw */
 
 .container { 
-    padding-right: calc(1.5rem * 5) !important;
-    padding-left: calc(1.5rem * 5) !important;
+    padding-right: 7.5rem !important;
+    padding-left: 7.5rem !important;
     margin-right: auto !important;
     margin-left: auto !important;
 }
 .container-fluid { 
-    padding-right: calc(1.5rem * 0.5) !important;
-    padding-left: calc(1.5rem * 0.5) !important;
+    padding-right: 0.75rem !important;
+    padding-left: 0.75rem !important;
     margin-right: auto !important;
     margin-left: auto !important;
 }
@@ -539,6 +583,31 @@ body {
 .overflow-hidden { overflow: hidden !important; }
 .overflow-visible { overflow: visible !important; }
 .overflow-scroll { overflow: scroll !important; }
+
+/* image */
+.image-fluid {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* animations */
+
+@keyframes placeholderLoader {
+    0% {
+        background-color: lightgray;
+    }
+    50% {
+        background-color: #e5e5e5;
+    }
+    100% {
+        background-color: lightgray;
+    }
+}
+
+.placeholder {
+    animation: placeholderLoader 1s ease-in infinite;
+}
+
 /* buttons */
 /* navbars */
 
