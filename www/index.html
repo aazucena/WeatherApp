@@ -30,13 +30,13 @@
         -->
         <meta http-equiv="Content-Security-Policy" content="
             default-src 'self' data: ssl.gstatic.com 'unsafe-eval'; 
-            style-src 'self' 'unsafe-inline' fonts.googleapis.com ka-f.fontawesome.com;
+            style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com ka-f.fontawesome.com;
             media-src *; 
-            img-src 'self' data: content:; 
-            script-src 'self' 'unsafe-eval' 'unsafe-inline' ka-f.fontawesome.com ;
-            script-src-elem 'self' 'unsafe-inline' unpkg.com ka-f.fontawesome.com ;
-            connect-src 'self' api.openweathermap.org;
-            font-src 'self' fonts.gstatic.com ka-f.fontawesome.com fonts.googleapis.com">
+            img-src 'self' data: content: openweathermap.org; 
+            script-src 'self' 'unsafe-eval' 'unsafe-inline' requirejs.org ka-f.fontawesome.com cdnjs.cloudflare.com;
+            script-src-elem 'self' 'unsafe-inline' requirejs.org unpkg.com ka-f.fontawesome.com cdnjs.cloudflare.com;
+            connect-src 'self' api.openweathermap.org weatherdbi.herokuapp.com;
+            font-src 'self' fonts.gstatic.com ka-f.fontawesome.com fonts.googleapis.com cdnjs.cloudflare.com">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -45,20 +45,54 @@
         <link rel="stylesheet" href="css/weather-icons.min.css">
         <link rel="stylesheet" href="css/weather-icons-wind.min.css">
         <link rel="stylesheet" href="https://ka-f.fontawesome.com/releases/v6.2.0/css/free.min.css?token=c5602657cf">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>Weather App</title>
     </head>
-    <body>
-        <div class="container"> 
-            <div id="temp">1&deg;C</div>
-            <div><p id="description"></p></div>
-            <div id="wind">1&deg;C</div>
-            <div id="maxtemp">1&deg;C</div>
-            <div id="mintemp">1&deg;C</div>
-            <div id="humidity">1RH%</div>
-            <i class="fa fa-pencil"></i>
+    <body id="body">
+        <div class="container p-5">
+            <div class="vstack gap-6 fs-2">
+                <div id="hero" class="vstack gap-2">
+                    <div class="hstack justify-content-between gap-4 align-items-center">
+                        <div class="d-flex justify-content-center">
+                            <div id="weather">
+                            </div>
+                        </div>
+                        <div class="vstack gap-2">
+                            <div class="d-flex justify-content-end">
+                                <div id="temp" class="fs-10 fw-bold">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <div id="time" class="fs-4 fw-regular">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div id="description" class="fs-4 fw-light">
+                        </div>
+                    </div>
+                    <div class="justify-content-center w-100">
+                        <hr class="w-50 text-secondary"/>
+                    </div>
+                </div>
+                <div class="vstack gap-4">
+                    <div class="hstack gap-3 justify-content-center">
+                        <div id="wind"></div>
+                    </div>
+                    <div id="dew_point"></div>
+                    <div class="hstack gap-3 justify-content-between flex-wrap">
+                        <div id="maxtemp"></div>
+                        <div id="mintemp"></div>
+                    </div>
+                    <div id="humidity"></div>
+                </div>
+            </div>
         </div>
     </body>
     <!--<script src="js/index.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone.min.js"></script>
     <script type='module' src="cordova.js" type="application/javascript"></script>
-    <script type='module' src="js/weatherapp.js" type="application/javascript"></script>
+    <script type='module' src="js/bundle.js" type="application/javascript"></script>
 </html>

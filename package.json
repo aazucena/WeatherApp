@@ -13,7 +13,8 @@
     "refresh": "npx cordova emulate",
     "build": "npx cordova build android",
     "config": "npx cordova platform add android",
-    "start": "concurrently --kill-others \"npm run dev\" \" npm run storybook\""
+    "bundle": "npx browserify src/index.js -o www/js/bundle.js",
+    "watch": "npx watchify src/index.js -o www/js/bundle.js --debug --verbose"
   },
   "keywords": [
     "ecosystem:cordova"
@@ -31,8 +32,10 @@
     "@storybook/manager-webpack4": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5",
+    "browserify": "^17.0.0",
     "cordova-android": "^10.1.2",
-    "sass": "^1.55.0"
+    "sass": "^1.55.0",
+    "watchify": "^4.0.0"
   },
   "cordova": {
     "platforms": [
@@ -41,8 +44,10 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "big.js": "^6.2.1",
     "concurrently": "^7.4.0",
     "contrast-color": "^1.0.1",
+    "cron": "^2.1.0",
     "dotenv": "^16.0.2",
     "lodash": "^4.17.21",
     "node-cron": "^3.0.2",
