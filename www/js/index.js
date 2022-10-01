@@ -108,30 +108,30 @@ const dewPoint = (temperature, relative_humidity) => {
     return result
 }
 
-var xmlhttp;
-var weatherURL;
+var res
+var weatherURL
 
 var APIkey = "712e884a43143ab7711a408902440f8f" //insert your API key from open weather map https://home.openweathermap.org/users/sign_up
-var place = "lethbridge,ca"; // option to change location 
+var place = "lethbridge,ca" // option to change location 
 
 window.onload = function () {  
     weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + place + "&units=metric&APPID=" + APIkey;
-    weather();
+    weather().then(() => {
+        getWeather()
+    })
 }
 
-function weather() {
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', weatherURL, true); //this changes the state of xmlhttp
-    xmlhttp.send();
-    xmlhttp.onreadystatechange = getWeather;
+async function weather() {
+    var response = await axios.get(weatherURL)
+    res = response
 }
 
 function getWeather() { // when readystate changes
         
     //check to see if the client -4 and server -200 is ready
-    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+    if (res.request.readyState === 4 && res.request.status === 200) {
 
-        var json = JSON.parse(xmlhttp.responseText);
+        var json = res.data
         console.log("🚀 ~ file: index.js ~ line 134 ~ getWeather ~ json", json)
         // var { main, weather , wind, timezone, visibility, clouds, coord, sys } = JSON.parse(xmlhttp.responseText);
 
@@ -169,9 +169,9 @@ function getWeather() { // when readystate changes
         //     utc_offset: timezone,
         // }
         
-        var current = new currentWeather(json.main.temp, json.weather[0].description, json.weather[0].icon, json.weather[0].id, json.wind.speed, json.wind.deg, json.main.temp_max, json.main.temp_min, dewPoint(json.main.temp, json.main.humidity), json.main.humidity, json.timezone);
+        var current = new currentWeather(json.main.temp, json.weather[0].description, json.weather[0].icon, json.weather[0].id, json.wind.speed, json.wind.deg, json.main.temp_max, json.main.temp_min, dewPoint(json.main.temp, json.main.humidity), json.main.humidity, json.timezone)
 
-        console.log("all info received from server");
+        console.log("all info received from server")
 
     } else {
         console.log("no dice");
