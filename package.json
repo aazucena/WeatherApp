@@ -5,7 +5,13 @@
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "refresh": "npx cordova emulate",
+    "dev": "npx cordova run android",
+    "build": "npx cordova build android",
+    "add-android": "npx cordova platform add android",
+    "rm-android": "npx cordova platform rm android",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "keywords": [
     "ecosystem:cordova"
@@ -13,11 +19,22 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-webpack4": "^6.5.12",
+    "@storybook/html": "^6.5.12",
+    "@storybook/manager-webpack4": "^6.5.12",
+    "@storybook/testing-library": "^0.0.13",
+    "babel-loader": "^8.2.5",
     "cordova-android": "^10.1.2"
   },
   "cordova": {
     "platforms": [
       "android"
     ]
-  }
+  },
+  "dependencies": {}
 }
