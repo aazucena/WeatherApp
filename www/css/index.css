@@ -57,20 +57,24 @@
 
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
-    transition: all 0.5s ease-in;
+    transition: all 0.125s ease-in;
+}
+
+html {
+    background-color:var(--primary-tint-1);
+    background-image: linear-gradient(to top, var(--primary-tint-3) 0%, var(--primary) 62.5%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh !important;
+    width: 100vw !important;
 }
 
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:var(--primary-tint-1);
-    background-image: linear-gradient(to top, var(--primary-tint-3) 0%, var(--primary) 62.5%);
-    background-repeat: no-repeat;
-    background-size: cover;
     font-family: 'Inter Tight', sans-serif;
     font-size:12px;
-    height:100% !important;
     margin:0px;
     padding:0px;
     /* Padding to avoid the "unsafe" areas behind notches in the screen */

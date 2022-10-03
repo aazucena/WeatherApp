@@ -1,92 +1,3 @@
-// var cron = require('cron').CronJob;
-// var Big = require('big.js')
-// var fs = require('fs')
-
-// const element = (name) => document.getElementById(name)
-
-// var cache = {}
-
-
-// const retrieveForecast = async() => {
-//     var APIkey = "712e884a43143ab7711a408902440f8f" //insert your API key from open weather map https://home.openweathermap.org/users/sign_up
-//     var geoLocation = "lethbridge,ca"
-//     var url = `https://api.openweathermap.org/data/2.5/weather?q${'='}${geoLocation}&units=metric&APPID=${APIkey}`
-//     var weatherURL = `https://weatherdbi.herokuapp.com/data/weather/${geoLocation}`
-//     var response = await fetch(url, {
-//         method: 'GET',
-//     })
-//     // var weatherResponse = await fetch(weatherURL, {
-//     //     method: 'GET',
-//     // })
-//     var data = await response.json().then((item) => ({
-//         ...item,
-//         main: {
-//             ...item?.main ?? {},
-//             // dew_point: dewPoint(item.main.temp, item.main.humidity),
-//         }
-//     }))
-//     // var weatherData = await weatherResponse.json()
-//     return {
-//         open_weather_api: {
-//             meta: response,
-//             data,
-//         },
-//         // weatherdbi: {
-//         //     meta: weatherResponse,
-//         //     data: weatherData,
-//         // }
-//     }
-// }
-
-// const generateCurrentWeather = async() => {
-//     var { open_weather_api: { meta, data: forecast } } = await retrieveForecast()
-//     if (meta.status === 200 && meta.statusText === 'OK' && meta.ok === true) {
-//         var { main, weather , wind, timezone, visibility, clouds, coord, sys } = forecast
-//         const setCurrentWeather = ({ 
-//                 temp, description, 
-//                 icon, wind, w_id,
-//                 maxtemp, mintemp, dew_point, 
-//                 humidity, utc_offset }) => {
-//             element("temp").innerHTML = `${Math.round(temp)}&deg;C`
-//             element("description").innerHTML = description
-//             // element("dew_point").innerHTML = `${dew_point}&deg;C`
-//             element("weather").innerHTML = `<img src="http://openweathermap.org/img/wn/${icon}@4x.png" class="image-fluid" alt="${w_id}"/>`
-//             element("mintemp").innerHTML = `${mintemp}&deg;C`
-//             element("maxtemp").innerHTML = `${maxtemp}&deg;C`
-//             element("wind").innerHTML = `${wind.speed}km/h ${wind.deg}&deg;`
-//             element("humidity").innerHTML = `${humidity}RH%`
-//             element("time").innerHTML = moment().utcOffset(utc_offset/60).format('hh:mmA')
-//         }
-//         var date = {
-//             sunrise: moment.unix(sys.sunrise).format('hh:mmA'),
-//             sunset: moment.unix(sys.sunset).format('hh:mmA')
-//         }
-//         console.log("🚀 ~ file: index.js ~ line 29 ~ job ~ date", date)
-//         const weather_info = {
-//             temp: main.temp,
-//             description: weather?.at(0).description, 
-//             icon: weather?.at(0).icon, 
-//             w_id: weather?.at(0).id, 
-//             wind: wind,
-//             dew_point: main.dew_point,
-//             maxtemp: main.temp_max, 
-//             mintemp: main.temp_min, 
-//             humidity: main.humidity,
-//             utc_offset: timezone,
-//         }
-//         setCurrentWeather(weather_info)
-//     }
-// }
-
-// window.onload = async() => {
-//     await generateCurrentWeather()
-//     // var job = new cron('* * * * * *', async() => {
-//     //     await generateCurrentWeather()
-//     // }, null, true)
-//     // job.start()
-//     console.log("all info received from server")
-// }
-
 const dewPoint = (temperature, relative_humidity) => {
     var magnus = {
         a: 17.625,
@@ -107,90 +18,115 @@ const dewPoint = (temperature, relative_humidity) => {
     var result = left_hand.div(right_hand).round(2).toNumber()
     return result
 }
-
-var res
-var weatherURL
-
 var APIkey = "712e884a43143ab7711a408902440f8f" //insert your API key from open weather map https://home.openweathermap.org/users/sign_up
+
 var location = {
     city: 'lethbridge',
     country: 'ca',
 }
+
 var place = `${location.city},${location.country}` // option to change location 
 
+var cache = {
+    weather: {},
+    forecast: {},
+}
+
 window.onload = function () {  
-    weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + place + "&units=metric&APPID=" + APIkey;
-    weather().then(() => {
-        getWeather()
-        setInterval(() => {
-            getWeather()
-        }, 1 * 30 * 1000)
-    })
+    weather()
+    
+    setInterval(() => {
+        weather()
+    }, 1 * 30 * 1000)
 }
 
 async function weather() {
-    var response = await axios.get(weatherURL)
-    res = response
-}
-
-function getWeather() { // when readystate changes
-        
-    //check to see if the client -4 and server -200 is ready
-    if (res.request.readyState === 4 && res.request.status === 200) {
-
-        var json = res.data
-        console.log("🚀 ~ file: index.js ~ line 134 ~ getWeather ~ json", json)
-        // var { main, weather , wind, timezone, visibility, clouds, coord, sys } = JSON.parse(xmlhttp.responseText);
-
-        function currentWeather ( 
-                temp, description, 
-                icon, w_id, wind_speed, wind_direction,
-                feels_like,
-                maxtemp, mintemp, dew_point,
-                humidity, utc_offset, sunrise, sunset) {
-            document.getElementById("temp").innerHTML = `${new Big(temp).round(1).toNumber()}&deg;C`
-            document.getElementById("description").innerHTML = description
-            document.getElementById("dew_point").innerHTML = `${new Big(dew_point).round(1).toNumber()}<sup class="fs-1">&deg;C</sup>`
-            document.getElementById("weather").innerHTML = `<i class="wi ${retrieveIcon(w_id, icon)}"></i>`
-            document.getElementById("mintemp").innerHTML = `${new Big(mintemp).round(1).toNumber()}&deg;C`
-            document.getElementById("maxtemp").innerHTML = `${new Big(maxtemp).round(1).toNumber()}&deg;C`
-            document.getElementById("feels_like").innerHTML = `feels like ${new Big(feels_like).round(1).toNumber()}&deg;C`
-            document.getElementById("wind").innerHTML = `${new Big(wind_speed).round(1).toNumber()}<sup class="fs-1">km/h</sup>`
-            document.getElementById("humidity").innerHTML = `${humidity}<sup class="fs-1">%</sup>`
-            document.getElementById("time").innerHTML = moment().utcOffset(utc_offset/60).format('hh:mmA')
-            document.getElementById("location").innerHTML = location.city
-            document.getElementById("sunrise").innerHTML = `${sunrise.time}<sup class="fs-1">${sunrise.abbv}</sup>`
-            document.getElementById("sunset").innerHTML = `${sunset.time}<sup class="fs-1">${sunset.abbv}</sup>`
+    await axios.get(`https://api.openweathermap.org/data/2.5/weather`, { 
+        params: {
+            q: place,
+            units: "metric",
+            "APPID": APIkey
         }
-
-        var date = {
-            sunrise: { time: moment.unix(json.sys.sunrise).format('hh:mm'), abbv: moment.unix(json.sys.sunrise).format('A')},
-            sunset: { time: moment.unix(json.sys.sunset).format('hh:mm'), abbv: moment.unix(json.sys.sunset).format('A')}
-        }
-        // const weather_info = {
-        //     temp: main.temp,
-        //     description: weather?.at(0).description, 
-        //     icon: weather?.at(0).icon, 
-        //     w_id: weather?.at(0).id, 
-        //     wind: wind,
-        //     // dew_point: main.dew_point,
-        //     maxtemp: main.temp_max, 
-        //     mintemp: main.temp_min, 
-        //     humidity: main.humidity,
-        //     utc_offset: timezone,
-        // }
+    }).then((res) => {
         
-        var current = new currentWeather(json.main.temp, json.weather[0].description,
-            json.weather[0].icon, json.weather[0].id, json.wind.speed, json.wind.deg, 
-            json.main.feels_like, json.main.temp_max, json.main.temp_min, 
-            dewPoint(json.main.temp, json.main.humidity), json.main.humidity, 
-            json.timezone, date.sunrise, date.sunset)
-
-        console.log("all info received from server")
-
-    } else {
-        console.log("no dice");
-    }
+        //check to see if the client -4 and server -200 is ready
+        if (res.request.readyState === 4 && res.request.status === 200) {
+    
+            var weather = res.data
+            console.log("🚀 ~ file: index.js ~ line 134 ~ getWeather ~ json", weather)
+            // var { main, weather , wind, timezone, visibility, clouds, coord, sys } = JSON.parse(xmlhttp.responseText);
+    
+            function currentWeather ( 
+                    temp, description, 
+                    icon, w_id, wind_speed, wind_direction,
+                    feels_like,
+                    maxtemp, mintemp, dew_point,
+                    humidity, utc_offset, sunrise, sunset) {
+                document.getElementById("temp").innerHTML = `${new Big(cache?.weather?.temp ?? temp).round(1).toNumber()}&deg;C`
+                document.getElementById("description").innerHTML = cache?.weather?.description ?? description
+                document.getElementById("dew_point").innerHTML = `${new Big(cache?.weather?.dew_point ?? dew_point).round(1).toNumber()}<sup class="fs-1">&deg;C</sup>`
+                document.getElementById("weather").innerHTML = `<i class="wi ${retrieveIcon(cache?.weather?.w_id ?? w_id, cache?.weather?.icon ?? icon)}"></i>`
+                document.getElementById("mintemp").innerHTML = `${new Big(cache?.weather?.mintemp ?? mintemp).round(1).toNumber()}&deg;C`
+                document.getElementById("maxtemp").innerHTML = `${new Big(cache?.weather?.maxtemp ?? maxtemp).round(1).toNumber()}&deg;C`
+                document.getElementById("feels_like").innerHTML = `feels like ${new Big(cache?.weather?.feels_like ?? feels_like).round(1).toNumber()}&deg;C`
+                document.getElementById("wind").innerHTML = `${new Big(cache?.weather?.wind_speed ?? wind_speed).round(1).toNumber()}<sup class="fs-1">km/h</sup>`
+                document.getElementById("humidity").innerHTML = `${cache?.weather?.humidity ?? humidity}<sup class="fs-1">%</sup>`
+                document.getElementById("time").innerHTML = moment().utcOffset((cache?.weather?.utc_offset ?? utc_offset)/60).format('hh:mmA')
+                document.getElementById("location").innerHTML = location.city
+                document.getElementById("sunrise").innerHTML = `${cache?.weather?.sunrise?.time ?? sunrise?.time}<sup class="fs-1">${cache?.weather?.sunrise?.abbv ?? sunrise?.abbv}</sup>`
+                document.getElementById("sunset").innerHTML = `${cache?.weather?.sunset?.time ?? sunset?.time}<sup class="fs-1">${cache?.weather?.sunset?.abbv ?? sunset?.abbv}</sup>`
+            }
+    
+            var date = {
+                sunrise: { time: moment.unix(weather.sys.sunrise).format('hh:mm'), abbv: moment.unix(weather.sys.sunrise).format('A')},
+                sunset: { time: moment.unix(weather.sys.sunset).format('hh:mm'), abbv: moment.unix(weather.sys.sunset).format('A')}
+            }
+            cache.weather = {
+                temp: weather.main.temp, 
+                description: weather.weather[0].description,
+                icon: weather.weather[0].icon,
+                w_id: weather.weather[0].id,
+                wind_speed: weather.wind.speed,
+                wind_direction: weather.wind.deg, 
+                feels_like: weather.main.feels_like,
+                max_temp: weather.main.temp_max,
+                min_temp: weather.main.temp_min, 
+                dew_point: dewPoint(weather.main.temp, weather.main.humidity),
+                humidity: weather.main.humidity, 
+                utc_offset: weather.timezone,
+                sunrise: date.sunrise,
+                sunset: date.sunset
+            }
+            currentWeather(weather.main.temp, weather.weather[0].description,
+                weather.weather[0].icon, weather.weather[0].id, weather.wind.speed, weather.wind.deg, 
+                weather.main.feels_like, weather.main.temp_max, weather.main.temp_min, 
+                dewPoint(weather.main.temp, weather.main.humidity), weather.main.humidity, 
+                weather.timezone, date.sunrise, date.sunset)
+    
+            console.log("all info received from server")
+    
+        } else {
+            console.log("no dice");
+        }
+    })
+    await axios.get(`https://api.openweathermap.org/data/2.5/forecast`, { 
+        params: {
+            q: place,
+            units: "metric",
+            "APPID": APIkey
+        }
+    }).then((res) => {
+        
+        //check to see if the client -4 and server -200 is ready
+        if (res.request.readyState === 4 && res.request.status === 200) {
+    
+            var forecast = res.data
+            console.log("🚀 ~ file: index.js ~ line 134 ~ getWeather ~ json", forecast)
+    
+        } else {
+            console.log("no dice");
+        }
+    })
 }
 
 const retrieveIcon = (id, icon_code) => {
