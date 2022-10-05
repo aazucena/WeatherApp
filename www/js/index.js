@@ -32,13 +32,311 @@ var cache = {
     forecast: {},
 }
 
+
+const switchBGColors = () => {
+    var date = moment()
+    var html = document.getElementsByTagName('html')[0]
+    var getMainColor = () => {
+        var day = Number(date.format('D'))
+        switch(day % 3) {
+            case 0:
+                return {
+                    main_color: '--primary',
+                    class_color: 'primary'
+                }
+            case 1:
+                return {
+                    main_color: '--secondary',
+                    class_color: 'secondary'
+                }
+            case 2:
+                return {
+                    main_color: '--tetriary',
+                    class_color: 'tetriary'
+                }
+        }
+    }
+    var { main_color, class_color } = getMainColor()
+    var hour = Number(date.format('k'))
+    /*
+    
+    --primary-shade-5: #261217;
+    --secondary-shade-5: #192510;
+    --tetriary-shade-5: #131725;
+    --primary-shade-4: #461926;
+    --secondary-shade-4: #294418;
+    --tetriary-shade-4: #1c2644;
+    --primary-shade-3: #671f36;
+    --secondary-shade-3: #3a661e;
+    --tetriary-shade-3: #223666;
+    --primary-shade-2: #8b2448;
+    --secondary-shade-2: #4a8a22;
+    --tetriary-shade-2: #27478a;
+    --primary-shade-1: #b02759;
+    --secondary-shade-1: #5bb026;
+    --tetriary-shade-1: #2959b0;
+    --primary: #d7286c;
+    --secondary: #6CD728;
+    --tetriary: #286CD7;
+    --primary-tint-1: #e25883;
+    --secondary-tint-1: #8bde55;
+    --tetriary-tint-1: #6082de;
+    --primary-tint-2: #ec7d9a;
+    --secondary-tint-2: #a5e579;
+    --tetriary-tint-2: #859ae5;
+    --primary-tint-3: #f49eb2;
+    --secondary-tint-3: #beec9b;
+    --tetriary-tint-3: #a6b2ec;
+    --primary-tint-4: #fabfcb;
+    --secondary-tint-4: #d4f3bc;
+    --tetriary-tint-4: #c5cbf3;
+    --primary-tint-5: #fddfe5;
+    --secondary-tint-5: #eaf9dd;
+    --tetriary-tint-5: #e2e5f9;
+     */
+    switch (true) {
+        case hour > 0 && hour <= 8:
+            switch(hour) {
+                case 1:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-shade-5) 0%, var(${main_color}-shade-4) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-shade-3`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-shade-3`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-shade-3`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-shade-3`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-shade-3`)
+                    break
+                case 2:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-shade-4) 0%, var(${main_color}-shade-4) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-shade-3`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-shade-3`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-shade-3`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-shade-3`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-shade-3`)
+                    break
+                case 3:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-shade-4) 0%, var(${main_color}-shade-3) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-shade-2`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-shade-2`)
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-shade-2`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-shade-2`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-shade-2`)
+                    break
+                case 4:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-shade-3) 0%, var(${main_color}-shade-3) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-shade-2`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-shade-2`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-shade-2`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-shade-2`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-shade-2`)
+                    break
+                case 5:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-shade-3) 0%, var(${main_color}-shade-2) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-shade-1`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-shade-1`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-shade-1`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-shade-1`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-shade-1`)
+                    break
+                case 6:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-shade-2) 0%, var(${main_color}-shade-2) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-shade-1`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-shade-1`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-shade-1`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-shade-1`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-shade-1`)
+                    break
+                case 7:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-shade-2) 0%, var(${main_color}-shade-1) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}`)
+                    break
+                case 8:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-shade-1) 0%, var(${main_color}-shade-1) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}`)
+                    break
+            }
+            break
+        case hour > 8 && hour <= 16:
+            switch(hour) {
+                case 9:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}) 0%, var(${main_color}-tint-1) 62.5%)`
+                    document.getElementById('body').classList.add('text-black')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-tint-2`)
+                    break
+                case 10:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-tint-2) 0%, var(${main_color}-tint-3) 62.5%)`
+                    document.getElementById('body').classList.add('text-black')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-tint-4`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-tint-4`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-tint-4`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-tint-4`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-tint-4`)
+                    break
+                case 11:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-tint-4) 0%, var(${main_color}-tint-5) 62.5%)`
+                    document.getElementById('body').classList.add('text-black')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-tint-3`)
+                    break
+                case 12:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-tint-5) 0%, var(${main_color}-tint-5) 62.5%)`
+                    document.getElementById('body').classList.add('text-black')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-tint-3`)
+                    break
+                case 13:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-tint-5) 0%, var(${main_color}-tint-4) 62.5%)`
+                    document.getElementById('body').classList.add('text-black')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-tint-3`)
+                    break
+                case 14:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-tint-4) 0%, var(${main_color}-tint-4) 62.5%)`
+                    document.getElementById('body').classList.add('text-black')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-tint-3`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-tint-3`)
+                    break
+                case 15:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-tint-4) 0%, var(${main_color}-tint-3) 62.5%)`
+                    document.getElementById('body').classList.add('text-black')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-tint-2`)
+                    break
+                case 16:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-tint-3) 0%, var(${main_color}-tint-3) 62.5%)`
+                    document.getElementById('body').classList.add('text-black')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-tint-2`)
+                    break
+            }
+            break
+        case hour > 16 && hour <= 24:
+            switch(hour) {
+                case 17:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-tint-3) 0%, var(${main_color}-tint-2) 62.5%)`
+                    document.getElementById('body').classList.add('text-black')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-tint-1`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-tint-1`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-tint-1`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-tint-1`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-tint-1`)
+                    break
+                case 18:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-tint-1) 0%, var(${main_color}) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-tint-2`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-tint-2`)
+                    break
+                case 19:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}) 0%, var(${main_color}) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-tint-1`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-tint-1`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-tint-1`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-tint-1`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-tint-1`)
+                    break
+                case 20:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}) 0%, var(${main_color}-shade-1) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-tint-1`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-tint-1`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-tint-1`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-tint-1`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-tint-1`)
+                    break
+                case 21:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-shade-1) 0%, var(${main_color}-shade-1) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}`)
+                    break
+                case 22:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-shade-1) 0%, var(${main_color}-shade-2) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}`)
+                    break
+                case 23:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-shade-2) 0%, var(${main_color}-shade-3) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-shade-1`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-shade-1`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-shade-1`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-shade-1`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-shade-1`)
+                    break
+                case 24:
+                    html.style.backgroundImage = `linear-gradient(to top, var(${main_color}-shade-4) 0%, var(${main_color}-shade-5) 62.5%)`
+                    document.getElementById('body').classList.add('text-white')
+                    document.getElementById('metric_1').classList.add(`bg-${class_color}-shade-3`)
+                    document.getElementById('metric_2').classList.add(`bg-${class_color}-shade-3`)
+                    document.getElementById('metric_3').classList.add(`bg-${class_color}-shade-3`)
+                    document.getElementById('metric_4').classList.add(`bg-${class_color}-shade-3`)
+                    document.getElementById('metric_5').classList.add(`bg-${class_color}-shade-3`)
+                    break
+            }
+            break
+    }
+}
+
 window.onload = function () {  
     weather()
-    
+    switchBGColors()
     setInterval(() => {
+        switchBGColors()
         weather()
     }, 1 * 30 * 1000)
 }
+
+
+
 
 async function weather() {
     await axios.get(`https://api.openweathermap.org/data/2.5/weather`, { 
@@ -56,25 +354,20 @@ async function weather() {
             console.log("🚀 ~ file: index.js ~ line 134 ~ getWeather ~ json", weather)
             // var { main, weather , wind, timezone, visibility, clouds, coord, sys } = JSON.parse(xmlhttp.responseText);
     
-            function currentWeather ( 
-                    temp, description, 
-                    icon, w_id, wind_speed, wind_direction,
-                    feels_like,
-                    maxtemp, mintemp, dew_point,
-                    humidity, utc_offset, sunrise, sunset) {
-                document.getElementById("temp").innerHTML = `${new Big(cache?.weather?.temp ?? temp).round(1).toNumber()}&deg;C`
-                document.getElementById("description").innerHTML = cache?.weather?.description ?? description
-                document.getElementById("dew_point").innerHTML = `${new Big(cache?.weather?.dew_point ?? dew_point).round(1).toNumber()}<sup class="fs-1">&deg;C</sup>`
-                document.getElementById("weather").innerHTML = `<i class="wi ${retrieveIcon(cache?.weather?.w_id ?? w_id, cache?.weather?.icon ?? icon)}"></i>`
-                document.getElementById("mintemp").innerHTML = `${new Big(cache?.weather?.mintemp ?? mintemp).round(1).toNumber()}&deg;C`
-                document.getElementById("maxtemp").innerHTML = `${new Big(cache?.weather?.maxtemp ?? maxtemp).round(1).toNumber()}&deg;C`
-                document.getElementById("feels_like").innerHTML = `feels like ${new Big(cache?.weather?.feels_like ?? feels_like).round(1).toNumber()}&deg;C`
-                document.getElementById("wind").innerHTML = `${new Big(cache?.weather?.wind_speed ?? wind_speed).round(1).toNumber()}<sup class="fs-1">km/h</sup>`
-                document.getElementById("humidity").innerHTML = `${cache?.weather?.humidity ?? humidity}<sup class="fs-1">%</sup>`
-                document.getElementById("time").innerHTML = moment().utcOffset((cache?.weather?.utc_offset ?? utc_offset)/60).format('hh:mmA')
+            function currentWeather(temp, description, icon, w_id, wind_speed, wind_direction, feels_like, maxtemp, mintemp, dew_point, humidity, utc_offset, sunrise, sunset) {
+                document.getElementById("temp").innerHTML = `${new Big(temp).round(1).toNumber()}&deg;C`
+                document.getElementById("description").innerHTML = description
+                document.getElementById("dew_point").innerHTML = `${new Big(dew_point).round(1).toNumber()}<sup class="fs-1">&deg;C</sup>`
+                document.getElementById("weather").innerHTML = `<i class="wi ${retrieveIcon(w_id, icon)}"></i>`
+                document.getElementById("mintemp").innerHTML = `${new Big(mintemp).round(1).toNumber()}&deg;C`
+                document.getElementById("maxtemp").innerHTML = `${new Big(maxtemp).round(1).toNumber()}&deg;C`
+                document.getElementById("feels_like").innerHTML = `feels like ${new Big(feels_like).round(1).toNumber()}&deg;C`
+                document.getElementById("wind").innerHTML = `${new Big(wind_speed).round(1).toNumber()}<sup class="fs-1">km/h</sup>`
+                document.getElementById("humidity").innerHTML = `${humidity}<sup class="fs-1">%</sup>`
+                document.getElementById("time").innerHTML = moment().utcOffset((utc_offset)/60).format('hh:mmA')
                 document.getElementById("location").innerHTML = location.city
-                document.getElementById("sunrise").innerHTML = `${cache?.weather?.sunrise?.time ?? sunrise?.time}<sup class="fs-1">${cache?.weather?.sunrise?.abbv ?? sunrise?.abbv}</sup>`
-                document.getElementById("sunset").innerHTML = `${cache?.weather?.sunset?.time ?? sunset?.time}<sup class="fs-1">${cache?.weather?.sunset?.abbv ?? sunset?.abbv}</sup>`
+                document.getElementById("sunrise").innerHTML = `${sunrise.time}<sup class="fs-1">${sunrise.abbv}</sup>`
+                document.getElementById("sunset").innerHTML = `${sunset.time}<sup class="fs-1">${sunset.abbv}</sup>`
             }
     
             var date = {
@@ -106,7 +399,7 @@ async function weather() {
             console.log("all info received from server")
     
         } else {
-            console.log("no dice");
+            console.log("no dice")
         }
     })
     await axios.get(`https://api.openweathermap.org/data/2.5/forecast`, { 
@@ -119,12 +412,22 @@ async function weather() {
         
         //check to see if the client -4 and server -200 is ready
         if (res.request.readyState === 4 && res.request.status === 200) {
-    
-            var forecast = res.data
+            
+            var forecast = {
+                ...res.data,
+                list: res.data.list.filter((d) => {
+                    var date = moment(d.dt_txt).format('h:mmA')
+                    return date === '6:00AM'
+                })
+            }
             console.log("🚀 ~ file: index.js ~ line 134 ~ getWeather ~ json", forecast)
-    
+            var forecastElements = forecast.list.slice(0, 4).map((data) => {
+                var day_of_week = moment(data.dt_txt).format('ddd')
+                return `<div class="vstack px-2 align-items-center"><div class="fs-2">${day_of_week}</div><i class="wi ${retrieveIcon(data.weather[0].id, data.weather[0].icon)} fs-6 pt-1"></i><span class="fs-2 pt-1">${new Big(data.main.temp).round(1).toNumber()}<sup class="fs-1">&deg;C</sup></span></div>`
+            }).join('<div class="vr"></div>')
+            document.getElementById("forecast").innerHTML = forecastElements
         } else {
-            console.log("no dice");
+            console.log("no dice")
         }
     })
 }

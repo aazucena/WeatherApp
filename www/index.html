@@ -47,17 +47,17 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>Weather App</title>
     </head>
-    <body id="body text-white">
-        <div class="container-fluid py-3 px-3 text-white">
+    <body id="body" class="text-white">
+        <div class="container-fluid py-3 px-3">
             <div class="vstack gap-6 fs-2">
                 <div id="topbar" class="hstack gap-2 pt-5 pb-4 fs-2 justify-content-center">
-                    <div id="location" class="capitalize fs-8 fw-bold display-font text-white"></div>
+                    <div id="location" class="capitalize fs-8 fw-bold display-font"></div>
                 </div>
-                <div id="hero" class="vstack gap-4 py-1 display-font">
+                <div id="hero" class="vstack gap-4 pt-3 display-font">
                     <div class="d-flex flex-column flex-fill">
                         <div id="weather" class="display-icon d-flex justify-content-center" >
                         </div>
-                        <div class="d-flex justify-content-center text-center">
+                        <div class="d-flex justify-content-center text-center pt-4">
                             <div id="description" class="fs-2 fw-semibold capitalize">
                             </div>
                         </div>
@@ -96,31 +96,30 @@
                     </div>
                 </div>
                 <div class="hstack gap-2 justify-content-center pt-2">
-                    <div class="d-flex flex-column gap-1 bg-primary-tint-3 mx-2 justify-content-center align-items-center circle py-3 px-4">
+                    <div id="metric_1" class="d-flex flex-column gap-1 mx-2 justify-content-center align-items-center circle py-3 px-4">
                         <i class="wi wi-thermometer fs-4"></i>
                         <div id="dew_point"></div>
                     </div>
-                    <div class="d-flex flex-column gap-1 bg-primary-tint-3 mx-2 justify-content-center align-items-center circle py-3 px-4">
+                    <div id="metric_2" class="d-flex flex-column gap-1 mx-2 justify-content-center align-items-center circle py-3 px-4">
                         <i class="wi wi-strong-wind fs-4"></i>
                         <div id="wind"></div>
                     </div>
-                    <div class="d-flex flex-column gap-1 bg-primary-tint-3 mx-2 justify-content-center align-items-center circle py-3 px-4">
+                    <div id="metric_3" class="d-flex flex-column gap-1 mx-2 justify-content-center align-items-center circle py-3 px-4">
                         <i class="wi wi-humidity fs-4"></i>
                         <div id="humidity"></div>
                     </div>
                 </div>
-                <div class="hstack gap-2 justify-content-center pt-1">
-                    <div class="d-flex flex-column gap-1 bg-primary-tint-3 mx-2 justify-content-center align-items-center circle py-4 px-4">
+                <div class="hstack gap-2 justify-content-center pt-2">
+                    <div id="metric_4" class="d-flex flex-column gap-1 mx-2 justify-content-center align-items-center circle py-4 px-4">
                         <i class="wi wi-sunrise fs-4"></i>
                         <div id="sunrise"></div>
                     </div>
-                    <div class="d-flex flex-column gap-1 bg-primary-tint-3 mx-2 justify-content-center align-items-center circle py-4 px-4">
+                    <div id="metric_5" class="d-flex flex-column gap-1 mx-2 justify-content-center align-items-center circle py-4 px-4">
                         <i class="wi wi-sunset fs-4"></i>
                         <div id="sunset"></div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center w-100 py-4">
-                    <hr class="w-50 text-white"/>
+                <div id="forecast" class="hstack gap-1 justify-content-center align-items-center px-4 py-4">
                 </div>
             </div>
         </div>

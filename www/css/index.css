@@ -62,11 +62,12 @@
 
 html {
     background-color:var(--primary-tint-1);
-    background-image: linear-gradient(to top, var(--primary-tint-3) 0%, var(--primary) 62.5%);
     background-repeat: no-repeat;
     background-size: cover;
-    height:100vh !important;
+    height: 100vh !important;
     width: 100vw !important;
+    margin: 0;
+    background-attachment: fixed;
 }
 
 body {
@@ -641,6 +642,51 @@ body {
 .bg-tetriary-tint-5 {
     background-color: var(--tetriary-tint-5) !important;
 }
+.bg-primary-shade-1 {
+    background-color: var(--primary-shade-1) !important;
+}
+.bg-secondary-shade-1 {
+    background-color: var(--secondary-shade-1) !important;
+}
+.bg-tetriary-shade-1 {
+    background-color: var(--tetriary-shade-1) !important;
+}
+.bg-primary-shade-2 {
+    background-color: var(--primary-shade-2) !important;
+}
+.bg-secondary-shade-2 {
+    background-color: var(--secondary-shade-2) !important;
+}
+.bg-tetriary-shade-2 {
+    background-color: var(--tetriary-shade-2) !important;
+}
+.bg-primary-shade-3 {
+    background-color: var(--primary-shade-3) !important;
+}
+.bg-secondary-shade-3 {
+    background-color: var(--secondary-shade-3) !important;
+}
+.bg-tetriary-shade-3 {
+    background-color: var(--tetriary-shade-3) !important;
+}
+.bg-primary-shade-4 {
+    background-color: var(--primary-shade-4) !important;
+}
+.bg-secondary-shade-4 {
+    background-color: var(--secondary-shade-4) !important;
+}
+.bg-tetriary-shade-4 {
+    background-color: var(--tetriary-shade-4) !important;
+}
+.bg-primary-shade-5 {
+    background-color: var(--primary-shade-5) !important;
+}
+.bg-secondary-shade-5 {
+    background-color: var(--secondary-shade-5) !important;
+}
+.bg-tetriary-shade-5 {
+    background-color: var(--tetriary-shade-5) !important;
+}
 .bg-white {
     background-color: white !important;
 }
@@ -788,6 +834,16 @@ body {
 /* buttons */
 /* navbars */
 /* custom */
+
+.vr {
+    display: inline-block;
+    align-self: stretch;
+    width: 1px;
+    min-height: 1em;
+    background-color: white;
+    opacity: 0.25;
+}
+
 .display-icon {
     font-size: 10rem !important;
 }
